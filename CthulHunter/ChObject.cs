@@ -2,11 +2,17 @@
 using System.Timers;
 namespace CthulHunter
 {
-    public class ChObject
+    internal static class IdGenerator
     {
-        public int Id { get => GetHashCode(); }
+        static private int id = 0;
+        public static int GetNextId() => id++;
+    }
+    abstract public class ChObject
+    {
+        public int Id { get; }
         public ChObject()
         {
+            Id = IdGenerator.GetNextId();
         }
     }
 }
